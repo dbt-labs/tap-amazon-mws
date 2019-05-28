@@ -1,0 +1,409 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "SellerOrderId": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PurchaseDate": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "LatestShipDate": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "AmazonOrderId": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "OrderStatus": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "SalesChannel": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "IsBusinessOrder": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "IsPrime": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "BuyerName": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "BuyerEmail": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "FulfillmentChannel": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "IsPremiumOrder": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "IsReplacementOrder": {
+            "type": [
+                "null",
+                "boolean"
+            ]
+        },
+        "LastUpdateDate": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "MarketplaceId": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "NumberOfItemsUnshipped": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "NumberOfItemsShipped": {
+            "type": [
+                "null",
+                "integer"
+            ]
+        },
+        "OrderType": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PaymentMethod": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "ShipServiceLevel": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "ShipServiceLevelCategory": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "OrderTotal": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "CurrencyCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "Amount": {
+                    "type": [
+                        "null",
+                        "number"
+                    ]
+                }
+            }
+        },
+        "EarliestShipDate": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+        },
+        "ShippingDiscount": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "CurrencyCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "Amount": {
+                    "type": [
+                        "null",
+                        "number"
+                    ]
+                }
+            }
+        },
+        "PromotionDiscount": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "properties": {
+                "CurrencyCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "Amount": {
+                    "type": [
+                        "null",
+                        "number"
+                    ]
+                }
+            }
+        },
+        "ShippingAddress": {
+            "type": "object",
+            "properties": {
+                "City": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "PostalCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "StateOrRegion": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "CountryCode": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "Name": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "AddressLine1": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                "AddressLine2": {
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            }
+        },
+        "OrderItems": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "QuantityOrdered": {
+                        "type": [
+                            "null",
+                            "number"
+                        ]
+                    },
+                    "Title": {
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    "IsGift": {
+                        "type": [
+                            "null",
+                            "boolean"
+                        ]
+                    },
+                    "ASIN": {
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    "SellerSKU": {
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    "OrderItemId": {
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    "IsTransparency": {
+                        "type": [
+                            "null",
+                            "boolean"
+                        ]
+                    },
+                    "QuantityShipped": {
+                        "type": [
+                            "null",
+                            "number"
+                        ]
+                    },
+                    "ItemPrice": {
+                        "type": [
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "CurrencyCode": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            },
+                            "Amount": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            }
+                        }
+                    },
+                    "ItemTax": {
+                        "type": [
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "CurrencyCode": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            },
+                            "Amount": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            }
+                        }
+                    },
+                    "PromotionDiscount": {
+                        "type": [
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "CurrencyCode": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            },
+                            "Amount": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            }
+                        }
+                    },
+                    "PromotionDiscountTax": {
+                        "type": [
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "CurrencyCode": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            },
+                            "Amount": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            }
+                        }
+                    },
+                    "ProductInfo": {
+                        "type": [
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "NumberOfItems": {
+                                "type": [
+                                    "null",
+                                    "number"
+                                ]
+                            },
+                            "SerialNumberRequired": {
+                                "type": [
+                                    "null",
+                                    "boolean"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
