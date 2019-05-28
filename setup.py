@@ -11,6 +11,7 @@ setup(name='tap-amazon-mws',
       py_modules=['tap_amazon_mws'],
       install_requires=[
           'tap-framework==0.0.4',
+          'mws',
       ],
       entry_points='''
           [console_scripts]
