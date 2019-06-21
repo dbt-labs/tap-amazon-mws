@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "IdType": {
+            "type": "string"
+        },
+        "Product": {
+            "type": "object",
+            "properties": {
+                "AttributeSets": {},
+                "Identifiers": {},
+                "Relationships": {},
+                "SalesRankings": {}
+            }
+        }
+    }
+}
+

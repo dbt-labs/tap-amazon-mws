@@ -16,6 +16,8 @@ class AmazonMWSClient:
         self.config = config
 
         self.orders_api = self.get_orders_api()
+        self.inventory_api = self.get_inventory_api()
+        self.products_api = self.get_products_api()
 
     def get_orders_api(self):
         return mws.Orders(
@@ -25,10 +27,30 @@ class AmazonMWSClient:
             region=self.config.get('region'),
         )
 
+    def get_inventory_api(self):
+        return mws.Inventory(
+            access_key=self.config.get('access_key'),
+            secret_key=self.config.get('secret_key'),
+            account_id=self.config.get('seller_id'),
+            region=self.config.get('region'),
+        )
+
+    def get_products_api(self):
+        return mws.Products(
+            access_key=self.config.get('access_key'),
+            secret_key=self.config.get('secret_key'),
+            account_id=self.config.get('seller_id'),
+            region=self.config.get('region'),
+        )
+
+    def obey_rate_limits(self, timeout=2):
+        time.sleep(timeout)
+
     def fetch_orders(self, request_config):
         exc = None
 
         for i in range(self.MAX_TRIES):
+            self.obey_rate_limits()
             try:
                 return self.orders_api.list_orders(**request_config)
             except mws.mws.MWSError as e:
@@ -44,6 +66,7 @@ class AmazonMWSClient:
         exc = None
 
         for i in range(self.MAX_TRIES):
+            self.obey_rate_limits(2)
             try:
                 return self.orders_api.list_order_items(**request_config)
             except mws.mws.MWSError as e:
@@ -68,6 +91,7 @@ class AmazonMWSClient:
         order_items = []
         resp = self._fetch_order_items({"amazon_order_id": order_id})
         while True:
+            #self.obey_rate_limits()
             new_items = resp.parsed.get('OrderItems', {}).get('OrderItem', [])
             order_items.extend(self.handle_order_items(new_items))
 
@@ -80,3 +104,35 @@ class AmazonMWSClient:
                 break
 
         return order_items
+
+    def fetch_inventory(self, request_config):
+        exc = None
+
+        for i in range(self.MAX_TRIES):
+            self.obey_rate_limits()
+            try:
+                return self.inventory_api.list_inventory_supply(**request_config)
+            except mws.mws.MWSError as e:
+                exc = e
+                LOGGER.info("Encountered an error while fetching inventory, sleeping")
+                LOGGER.error(e)
+                time.sleep(60 * (i + 1))
+        else:
+            LOGGER.info("Failed after {} queries - raising".format(self.MAX_TRIES))
+            raise exc
+
+    def fetch_products(self, request_config):
+        exc = None
+
+        for i in range(self.MAX_TRIES):
+            self.obey_rate_limits()
+            try:
+                return self.products_api.get_matching_product_for_id(**request_config)
+            except mws.mws.MWSError as e:
+                exc = e
+                LOGGER.info("Encountered an error while fetching products, sleeping")
+                LOGGER.error(e)
+                time.sleep(60 * (i + 1))
+        else:
+            LOGGER.info("Failed after {} queries - raising".format(self.MAX_TRIES))
+            raise exc
