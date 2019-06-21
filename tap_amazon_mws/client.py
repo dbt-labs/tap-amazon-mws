@@ -91,7 +91,7 @@ class AmazonMWSClient:
         order_items = []
         resp = self._fetch_order_items({"amazon_order_id": order_id})
         while True:
-            #self.obey_rate_limits()
+            self.obey_rate_limits()
             new_items = resp.parsed.get('OrderItems', {}).get('OrderItem', [])
             order_items.extend(self.handle_order_items(new_items))
 
