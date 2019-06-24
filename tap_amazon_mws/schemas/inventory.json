@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": ["null", "string"]
+        },
+        "ASIN": {
+            "type": ["null", "string"]
+        },
+        "FNSKU": {
+            "type": ["null", "string"]
+        },
+        "SellerSKU": {
+            "type": ["null", "string"]
+        },
+        "Condition": {
+            "type": ["null", "string"]
+        },
+        "SupplyDetail": {},
+        "TotalSupplyQuantity": {
+            "type": ["null", "integer"]
+        },
+        "InStockSupplyQuantity": {
+            "type": ["null", "integer"]
+        },
+        "EarliestAvailability": {
+            "type": ["null", "string"]
+        }
+    }
+}

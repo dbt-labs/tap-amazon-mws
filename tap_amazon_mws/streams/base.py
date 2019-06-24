@@ -2,7 +2,9 @@ import pytz
 import singer
 import singer.utils
 import singer.metrics
+import time
 
+from tap_amazon_mws.cache import InventoryCache
 from tap_amazon_mws.config import get_config_start_date
 from tap_amazon_mws.state import incorporate, save_state, \
     get_last_record_value_for_table
@@ -48,14 +50,25 @@ class PaginatedStream(BaseStream):
 
         LOGGER.info('Syncing data for entity {} from {} (page={})'.format(table, start_date, page))
 
-        next_token, records = self.sync_records({
-            "marketplaceids": self.config.get('marketplace_ids'),
-            "lastupdatedafter": start_date,
-        })
+        next_token, records = self.sync_records(self.get_config(start_date))
 
         while next_token is not None:
             page += 1
             LOGGER.info('Syncing data for entity {} (page={})'.format(table, page))
             next_token, records = self.sync_records({"next_token": next_token})
+
+        return self.state
+
+
+class InventoryIterationStream(BaseStream):
+
+    def sync_data(self):
+        table = self.TABLE
+
+        LOGGER.info('Syncing data for {} {}'.format(len(InventoryCache), table))
+
+        for i, product_id in enumerate(sorted(InventoryCache)):
+            LOGGER.info('Syncing data for product {} of {} {}'.format(i + 1, len(InventoryCache), product_id))
+            self.sync_records(self.get_config(product_id=product_id))
 
         return self.state

@@ -17,6 +17,13 @@ class OrdersStream(PaginatedStream):
     def __init__(self, *args, **kwargs):
         super(OrdersStream, self).__init__(*args, **kwargs)
 
+    def get_config(self, start_date):
+        return {
+            "marketplaceids": self.config.get('marketplace_ids'),
+            "lastupdatedafter": start_date,
+            "max_results": "50"
+        }
+
     def parse_order_item(self, r):
         return {
             # Ids
