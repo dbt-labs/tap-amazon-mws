@@ -1,4 +1,4 @@
-# tap-amazon-advertising
+# tap-amazon-mws
 
 Author: Drew Banin (drew@fishtownanalytics.com)
 
