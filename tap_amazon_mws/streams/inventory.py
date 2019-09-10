@@ -66,7 +66,7 @@ class InventoryStream(PaginatedStream):
 
         return records
 
-    def sync_records(self, request_config):
+    def sync_records(self, request_config, end_date=None):
         table = self.TABLE
         raw_inventory =  self.client.fetch_inventory(request_config)
         inventory = self.get_stream_data(raw_inventory)

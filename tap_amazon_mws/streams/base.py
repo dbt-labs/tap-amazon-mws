@@ -1,13 +1,10 @@
-import pytz
 import singer
 import singer.utils
 import singer.metrics
-import time
 
 from tap_amazon_mws.cache import InventoryCache
-from tap_amazon_mws.config import get_config_start_date
-from tap_amazon_mws.state import incorporate, save_state, \
-    get_last_record_value_for_table
+from tap_amazon_mws.config import get_config_start_date, get_config_end_date
+from tap_amazon_mws.state import get_last_record_value_for_table
 
 from tap_framework.streams import BaseStream as base
 
@@ -48,14 +45,16 @@ class PaginatedStream(BaseStream):
         if start_date is None:
             start_date = get_config_start_date(self.config)
 
+        end_date = get_config_end_date(self.config)
+
         LOGGER.info('Syncing data for entity {} from {} (page={})'.format(table, start_date, page))
 
-        next_token, records = self.sync_records(self.get_config(start_date))
+        next_token, records = self.sync_records(self.get_config(start_date), end_date=end_date)
 
         while next_token is not None:
             page += 1
             LOGGER.info('Syncing data for entity {} (page={})'.format(table, page))
-            next_token, records = self.sync_records({"next_token": next_token})
+            next_token, records = self.sync_records({"next_token": next_token}, end_date=end_date)
 
         return self.state
 

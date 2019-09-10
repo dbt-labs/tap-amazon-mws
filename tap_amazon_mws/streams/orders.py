@@ -1,10 +1,9 @@
 from tap_amazon_mws.streams.base import PaginatedStream, pluck, get_price
 from tap_amazon_mws.state import incorporate, save_state
+from dateutil.parser import parse
 
 import singer
-import json
 import time
-import mws
 
 
 LOGGER = singer.get_logger()  # noqa
@@ -158,7 +157,11 @@ class OrdersStream(PaginatedStream):
     def get_stream_data(self, result):
         parsed = result.parsed
         for path in ['Orders', 'Order']:
-            parsed = parsed.get(path, {})
+            if path not in parsed:
+                parsed = []
+                break
+            else:
+                parsed = parsed.get(path)
 
         # Shove this into a list if its a dict
         # This can happen when only one record is returned by the API
@@ -166,7 +169,12 @@ class OrdersStream(PaginatedStream):
         if isinstance(parsed, dict):
             parsed = [parsed]
 
-        LOGGER.info("Extracting data from {} orders".format(len(parsed)))
+        if len(parsed) > 0:
+            LOGGER.info("Extracting data from {} orders ({} - {})".format(
+                len(parsed), parsed[0]['LastUpdateDate'], parsed[-1]['LastUpdateDate']
+            ))
+        else:
+            LOGGER.info("No orders returned!")
 
         records = []
         for record in parsed:
@@ -178,7 +186,7 @@ class OrdersStream(PaginatedStream):
             LOGGER.info('DEBUG: last record is from: {}'.format(records[-1]['LastUpdateDate']))
         return records
 
-    def sync_records(self, request_config):
+    def sync_records(self, request_config, end_date=None):
         table = self.TABLE
         raw_orders =  self.client.fetch_orders(request_config)
         orders = self.get_stream_data(raw_orders)
@@ -189,8 +197,15 @@ class OrdersStream(PaginatedStream):
 
         if len(orders) > 0:
             state_key = 'LastUpdateDate'
-            self.state = incorporate(self.state, self.TABLE, state_key, orders[-1][state_key])
+            last_order = orders[-1]
+            order_time = last_order[state_key]
+            self.state = incorporate(self.state, self.TABLE, state_key, order_time)
             save_state(self.state)
+
+            parsed = parse(order_time).date()
+            if end_date is not None and parsed > end_date:
+                LOGGER.info("Synced past the specified end_date ({}) - quitting".format(parsed))
+                return None, orders
 
         next_token = raw_orders.parsed.get('NextToken', {}).get('value')
         return next_token, orders
