@@ -48,7 +48,7 @@ class ProductStream(InventoryIterationStream):
                 LOGGER.info("WARNING: Couldn't sync product {}; {}".format(parsed, e))
             return None
 
-    def sync_records(self, request_config):
+    def sync_records(self, request_config, end_date=None):
         table = self.TABLE
         raw_product =  self.client.fetch_products(request_config)
         product = self.get_stream_data(raw_product)
