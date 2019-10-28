@@ -27,7 +27,7 @@ class InventoryStream(PaginatedStream):
         start_date_dt = parse(start_date).date()
 
         return {
-            "datetime_": start_date_dt,
+            "datetime": start_date_dt,
             "response_group": "Basic"
         }
 

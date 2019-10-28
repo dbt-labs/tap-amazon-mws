@@ -142,6 +142,7 @@ class OrdersStream(PaginatedStream):
                 "SellerSKU": pluck(o, ['SellerSKU', 'value']),
                 "OrderItemId": pluck(o, ['OrderItemId', 'value']),
                 "IsTransparency": pluck(o, ['IsTransparency', 'value']),
+                "CustomizedURL": pluck(o, ['BuyerCustomizedInfo', 'CustomizedURL', 'value']),
                 "ProductInfo": {
                     "NumberOfItems": pluck(o, ['ProductInfo', 'NumberOfItems', 'value']),
                     "SerialNumberRequired": pluck(o, ['ProductInfo', 'SerialNumberRequired', 'value']),
