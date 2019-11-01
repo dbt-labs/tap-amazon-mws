@@ -1,6 +1,6 @@
 import json
 import singer
-
+import datetime
 from dateutil.parser import parse
 
 LOGGER = singer.get_logger()
@@ -23,13 +23,12 @@ def incorporate(state, table, field, value):
 
     new_state = state.copy()
 
-    parsed = parse(value).strftime("%Y-%m-%dT%H:%M:%SZ")
-
+    parsed = (parse(value) + datetime.timedelta(microseconds==1)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     if 'bookmarks' not in new_state:
         new_state['bookmarks'] = {}
 
     if(new_state['bookmarks'].get(table, {}).get('last_record') is None or
-       new_state['bookmarks'].get(table, {}).get('last_record') < value):
+       new_state['bookmarks'].get(table, {}).get('last_record') < parsed):
         new_state['bookmarks'][table] = {
             'field': field,
             'last_record': parsed,
@@ -42,7 +41,7 @@ def save_state(state):
     if not state:
         return
 
-    LOGGER.info('Updating state.')
+    LOGGER.info('Updating state. %s' % state)
 
     singer.write_state(state)
 
