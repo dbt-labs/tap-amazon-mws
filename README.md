@@ -1,6 +1,11 @@
-# tap-amazon-mws
+# singer-tap-amazon-mws
 
+Author: Ian McAllister (ian@mcallisternevins.com)
+
+Forked from (& most of the work done by):
 Author: Drew Banin (drew@fishtownanalytics.com)
+
+
 
 This is a [Singer](http://singer.io) tap that produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
 
@@ -16,8 +21,8 @@ It:
 1. Install
 
 ```bash
-git clone git@github.com:fishtown-analytics/tap-amazon-mws.git
-cd tap-amazon-mws
+git clone git@github.com:imcallister/singer-tap-amazon-mws.git
+cd singer-tap-amazon-mws
 pip install .
 ```
 

@@ -2,9 +2,9 @@
 
 from setuptools import setup, find_packages
 
-setup(name='tap-amazon-mws',
+setup(name='singer-tap-amazon-mws',
       version='0.0.1',
-      description='Singer.io tap for extracting data from the Amazon MWS API',
+      description='Singer.io tap for extracting data from the Amazon MWS API. Forked from https://github.com/fishtown-analytics/tap-amazon-mws',
       author='Fishtown Analytics',
       url='http://fishtownanalytics.com',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
