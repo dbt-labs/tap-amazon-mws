@@ -21,9 +21,7 @@ It:
 1. Install
 
 ```bash
-git clone git@github.com:imcallister/singer-tap-amazon-mws.git
-cd singer-tap-amazon-mws
-pip install .
+pip install singer-tap-amazon-mws
 ```
 
 2. Get credentials from Amazon
@@ -45,7 +43,7 @@ There is a template you can use at `config.json.example`, just copy it to `confi
 4. Run the application to generate a catalog.
 
 ```bash
-tap-amazon-mws -c config.json -d > catalog.json
+singer-tap-amazon-mws -c config.json -d > catalog.json
 ```
 
 5. Select the tables you'd like to replicate
@@ -55,7 +53,7 @@ Step 4 a file called `catalog.json` that specifies all the available endpoints a
 6. Run it!
 
 ```bash
-tap-amazon-mws -c config.json --catalog catalog.json
+singer-tap-amazon-mws -c config.json --catalog catalog.json
 ```
 
 Copyright &copy; 2019 Fishtown Analytics
