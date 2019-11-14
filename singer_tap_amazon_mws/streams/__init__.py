@@ -1,7 +1,7 @@
 
-from tap_amazon_mws.streams.orders import OrdersStream
-from tap_amazon_mws.streams.inventory import InventoryStream
-from tap_amazon_mws.streams.products import ProductStream
+from singer_tap_amazon_mws.streams.orders import OrdersStream
+from singer_tap_amazon_mws.streams.inventory import InventoryStream
+from singer_tap_amazon_mws.streams.products import ProductStream
 
 AVAILABLE_STREAMS = [
     OrdersStream,

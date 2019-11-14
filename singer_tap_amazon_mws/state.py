@@ -23,7 +23,7 @@ def incorporate(state, table, field, value):
 
     new_state = state.copy()
 
-    parsed = (parse(value) + datetime.timedelta(microseconds==1)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    parsed = (parse(value) + datetime.timedelta(microseconds=1)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     if 'bookmarks' not in new_state:
         new_state['bookmarks'] = {}
 

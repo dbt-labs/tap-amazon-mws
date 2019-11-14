@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='singer-tap-amazon-mws',
-      version='0.0.1',
+      version='0.0.3',
       description='Singer.io tap for extracting data from the Amazon MWS API. Forked from https://github.com/fishtown-analytics/tap-amazon-mws',
       author='ian@mcallisternevins.com',
       url='https://github.com/imcallister/singer-tap-amazon-mws',
@@ -19,7 +19,7 @@ setup(name='singer-tap-amazon-mws',
       ''',
       packages=find_packages(),
       package_data={
-          'tap_amazon_mws': [
+          'singer_tap_amazon_mws': [
               'schemas/*.json'
           ]
       })

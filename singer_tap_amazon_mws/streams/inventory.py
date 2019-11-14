@@ -1,6 +1,6 @@
-from tap_amazon_mws.streams.base import PaginatedStream, pluck, get_price
-from tap_amazon_mws.state import incorporate, save_state
-from tap_amazon_mws.cache import InventoryCache
+from singer_tap_amazon_mws.streams.base import PaginatedStream, pluck, get_price
+from singer_tap_amazon_mws.state import incorporate, save_state
+from singer_tap_amazon_mws.cache import InventoryCache
 
 from dateutil.parser import parse
 

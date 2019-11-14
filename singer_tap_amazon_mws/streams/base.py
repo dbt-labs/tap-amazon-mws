@@ -2,9 +2,9 @@ import singer
 import singer.utils
 import singer.metrics
 
-from tap_amazon_mws.cache import InventoryCache
-from tap_amazon_mws.config import get_config_start_date, get_config_end_date
-from tap_amazon_mws.state import get_last_record_value_for_table
+from singer_tap_amazon_mws.cache import InventoryCache
+from singer_tap_amazon_mws.config import get_config_start_date, get_config_end_date
+from singer_tap_amazon_mws.state import get_last_record_value_for_table
 
 from tap_framework.streams import BaseStream as base
 
