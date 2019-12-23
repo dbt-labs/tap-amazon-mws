@@ -4,8 +4,8 @@ import singer
 
 import tap_framework
 
-from tap_amazon_mws.client import AmazonMWSClient
-from tap_amazon_mws.streams import AVAILABLE_STREAMS
+from singer_tap_amazon_mws.client import AmazonMWSClient
+from singer_tap_amazon_mws.streams import AVAILABLE_STREAMS
 
 LOGGER = singer.get_logger()  # noqa
 

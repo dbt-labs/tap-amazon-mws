@@ -1,5 +1,5 @@
-from tap_amazon_mws.streams.base import PaginatedStream, pluck, get_price
-from tap_amazon_mws.state import incorporate, save_state
+from singer_tap_amazon_mws.streams.base import PaginatedStream, pluck, get_price
+from singer_tap_amazon_mws.state import incorporate, save_state
 from dateutil.parser import parse
 
 import singer
@@ -142,6 +142,7 @@ class OrdersStream(PaginatedStream):
                 "SellerSKU": pluck(o, ['SellerSKU', 'value']),
                 "OrderItemId": pluck(o, ['OrderItemId', 'value']),
                 "IsTransparency": pluck(o, ['IsTransparency', 'value']),
+                "CustomizedURL": pluck(o, ['BuyerCustomizedInfo', 'CustomizedURL', 'value']),
                 "ProductInfo": {
                     "NumberOfItems": pluck(o, ['ProductInfo', 'NumberOfItems', 'value']),
                     "SerialNumberRequired": pluck(o, ['ProductInfo', 'SerialNumberRequired', 'value']),

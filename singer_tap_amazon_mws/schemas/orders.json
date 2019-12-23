@@ -290,6 +290,12 @@
                             "string"
                         ]
                     },
+                    "CustomizedURL": {
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
                     "IsTransparency": {
                         "type": [
                             "null",

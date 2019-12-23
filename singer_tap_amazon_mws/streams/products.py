@@ -1,5 +1,5 @@
-from tap_amazon_mws.streams.base import InventoryIterationStream, pluck, get_price
-from tap_amazon_mws.state import incorporate, save_state
+from singer_tap_amazon_mws.streams.base import InventoryIterationStream, pluck, get_price
+from singer_tap_amazon_mws.state import incorporate, save_state
 
 from dateutil.parser import parse
 
