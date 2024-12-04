@@ -1,3 +1,15 @@
+# ***Archival Notice***
+This repository has been archived.
+
+As a result all of its historical issues and PRs have been closed.
+
+Please *do not clone* this repo without understanding the risk in doing so:
+- It may have unaddressed security vulnerabilities
+- It may have unaddressed bugs
+
+<details>
+   <summary>Click for historical readme</summary>
+
 # tap-amazon-mws
 
 Author: Drew Banin (drew@fishtownanalytics.com)
@@ -53,4 +65,5 @@ Step 4 a file called `catalog.json` that specifies all the available endpoints a
 tap-amazon-mws -c config.json --catalog catalog.json
 ```
 
-Copyright &copy; 2019 Fishtown Analytics
+Copyright &amp;copy; 2019 Fishtown Analytics
+
